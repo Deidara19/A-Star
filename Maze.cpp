@@ -45,11 +45,11 @@ void Maze::heuristic()
 
 }
 
-void Maze::readInput()
+void Maze::readInput(char *fileName)
 {
 	char coma;
 
-	ifstream input("Examen2-1.txt");
+	ifstream input(fileName);
 
 	input >> rows;
 	input >> cols;
