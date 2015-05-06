@@ -116,7 +116,7 @@ void Maze::heuristic()
 
 void Maze::astar(int auxx, int auxy)
 {
-	if (start.x == final.x && start.y == final.y) return;
+	if (auxx == final.x && auxy == final.y) return;
 	Node *aux;
 	int csm = 0;
 	int costo_aux = 10000000;
