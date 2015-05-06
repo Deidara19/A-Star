@@ -7,8 +7,8 @@ Maze::Maze()
 	cols = 0;
 	costo = 0;
 	readInput(); 
-	auxx = start.x;
-	auxy = start.y;
+	//auxx = start.x;
+	//auxy = start.y;
 }
 
 Maze::~Maze()
@@ -114,7 +114,7 @@ void Maze::heuristic()
 
 }
 
-void Maze::astar()
+void Maze::astar(int auxx, int auxy)
 {
 	if (start.x == final.x && start.y == final.y) return;
 	Node *aux;

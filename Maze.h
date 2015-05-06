@@ -14,7 +14,7 @@ class Maze
 		Node **M;                             // Store the maze.
 		int rows, cols;                       // Height of the maze (Rows and Columns)
 		int costo;
-		int auxx, auxy;
+		//int auxx, auxy;
 
 		Maze();
 		~Maze();
@@ -24,7 +24,7 @@ class Maze
 		void setAdjacencies();
 		void heuristic();
 		int  abs(int x);
-		void astar();
+		void astar(int auxx, int auxy);
 };
 
 #endif
