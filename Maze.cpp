@@ -118,6 +118,7 @@ void Maze::astar()
 {
 	if (start.x == final.x && start.y == final.y) return;
 	Node *aux;
+	int csm = 0;
 	int costo_aux = 10000000;
 	
 	for (int i = 0; i < 4; i++) // es 4 porque horacio se le da la puta gana, hdp, report pls, fucking peruvian
@@ -126,7 +127,8 @@ void Maze::astar()
 		{
 			if (M[auxx][auxy].adyacent[i]->C + M[auxx][auxy].adyacent[i]->H < costo_aux)
 			{
-				aux = M[auxx][auxy].adyacent[i];
+				aux = M[auxx][auxy].adyacent[i]; 
+				csm++;
 				costo_aux = M[auxx][auxy].adyacent[i]->C + M[auxx][auxy].adyacent[i]->H;
 			}
 		}
@@ -134,12 +136,14 @@ void Maze::astar()
 
 	costo += aux->C;
 	
-	if (M[auxx][auxy].adyacent[0]->H == aux->H)
+	if (csm == 0)
 		auxy -= 1;
-	else if (M[auxx][auxy].adyacent[1]->H == aux->H)
+	else if (csm == 1)
 		auxx += 1;
-	else if (M[auxx][auxy].adyacent[2]->H == aux->H)
+	else if (csm == 2)
 		auxy += 1;
-	else if(M[auxx][auxy].adyacent[3]->H == aux->H)
+	else if(csm == 3)
 		auxx -= 1;
+
+	aux->visited = true;
 }
