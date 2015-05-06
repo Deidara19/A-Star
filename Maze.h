@@ -20,7 +20,7 @@ public:
 	Maze();
 	~Maze();
 
-	void readInput();
+	void readInput(char *fileName);
 	void printMaze();
 	void setAdjacencies();
 	void heuristic();
