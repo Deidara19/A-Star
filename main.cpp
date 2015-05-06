@@ -5,10 +5,10 @@ int main()
 {
 	Maze M;
 
-	cout << "\tEXAMEN PARCIAL #2\nALGORITMOS Y ESTRUCTURAS DE DATOS \n  FECHA DE ENTREGA: 07/05/15\n\t  " << endl;
-	cout << "\tA* ALGORITHM" << endl << endl;
+	cout << "\tEXAMEN PARCIAL #2\nALGORITMOS Y ESTRUCTURAS DE DATOS \n  FECHA DE ENTREGA: 07/05/15" << endl;
+	cout << "\t  A* ALGORITHM" << endl << endl;
 
-	M.printMaze();
+	M.readInput();
 
 	cin.get();
 	return 0;
