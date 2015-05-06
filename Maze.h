@@ -13,6 +13,8 @@ class Maze
 		Point2D start, final;
 		Node **M;                             // Store the maze.
 		int rows, cols;                       // Height of the maze (Rows and Columns)
+		int costo;
+		int auxx, auxy;
 
 		Maze();
 		~Maze();
@@ -22,6 +24,7 @@ class Maze
 		void setAdjacencies();
 		void heuristic();
 		int  abs(int x);
+		void astar();
 };
 
 #endif
