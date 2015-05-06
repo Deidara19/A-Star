@@ -8,7 +8,7 @@ int main()
 	cout << "\tEXAMEN PARCIAL #2\nALGORITMOS Y ESTRUCTURAS DE DATOS \n  FECHA DE ENTREGA: 07/05/15" << endl;
 	cout << "\t  A* ALGORITHM" << endl << endl;
 
-	M.readInput();
+	M.readInput("Examen2-1.txt");
 
 	cin.get();
 	return 0;
