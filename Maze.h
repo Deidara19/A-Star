@@ -4,6 +4,7 @@
 #include "Node.h"
 #include "Point2D.h"
 #include<fstream>
+#include<iomanip>
 
 class Maze
 {
