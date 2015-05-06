@@ -40,19 +40,12 @@ void Maze::readInput()
 	while (input >> start.x >> coma >> start.y >> final.x >> coma >> final.y)
 	{
 		/* AQUÍ SE MANDA A LLAMAR LA FUNCIÓN */
-		setAdjacencies();
 		heuristic();
-
-		/*
-		for (int i = 0; i < rows; i++)
-		{
-			for (int j = 0; j < cols; j++)
-				cout << M[i][j].H << " ";
-			cout << endl;
-		}
-			*/
-
 		astar(start.x, start.y);
+		costo = 0;
+		for (int i = 0; i < rows; i++)
+			for (int j = 0; j < cols; j++)
+				M[i][j].visited = false;
 		cout << endl;
 	}
 
@@ -131,6 +124,14 @@ void Maze::printMaze()
 		}
 		cout << endl;
 	}
+
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j<cols; j++)
+			cout << M[i][j].C << " ";
+		cout << endl;
+	}
+		
 }
 
 int Maze::abs(int x)
@@ -151,26 +152,24 @@ void Maze::heuristic()
 
 void Maze::astar(int auxx, int auxy)
 {
-	cout << auxx << ", " << auxy << endl;
+	cout << auxx << ", " << auxy << " Costo Acumulado: " << costo << endl;
 	if (auxx == final.x && auxy == final.y) return;
 	Node *aux;
 	aux = NULL;
-	int csm = 0;
+	int csm = 4;
 	int costo_aux = 10000000;
 
 	for (int i = 0; i < 4; i++) // es 4 porque horacio se le da la puta gana, hdp, report pls, fucking peruvian
 	{
 		if (M[auxx][auxy].adyacent[i] != NULL)
-		{
-			if (M[auxx][auxy].adyacent[i]->C + M[auxx][auxy].adyacent[i]->H < costo_aux)
-			{
-				aux = M[auxx][auxy].adyacent[i];
-				csm = i;
-				costo_aux = M[auxx][auxy].adyacent[i]->C + M[auxx][auxy].adyacent[i]->H;
-			}
-		}
+			if (M[auxx][auxy].adyacent[i]->visited == false)
+				if (M[auxx][auxy].adyacent[i]->C + M[auxx][auxy].adyacent[i]->H < costo_aux)
+				{
+					aux = M[auxx][auxy].adyacent[i];
+					csm = i;
+					costo_aux = M[auxx][auxy].adyacent[i]->C + M[auxx][auxy].adyacent[i]->H;
+				}
 	}
-
 	costo += aux->C;
 
 	if (csm == 0)
@@ -181,6 +180,12 @@ void Maze::astar(int auxx, int auxy)
 		auxx += 1;
 	else if (csm == 3)
 		auxy -= 1;
+	else
+	{
+		cout << " No existe solución!" << endl;
+		return;
+	}
+		
 
 	aux->visited = true;
 
