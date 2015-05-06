@@ -6,7 +6,6 @@ Maze::Maze()
 	rows = 0;
 	cols = 0;
 	costo = 0;
-	readInput();
 	//auxx = start.x;
 	//auxy = start.y;
 }
@@ -16,6 +15,34 @@ Maze::~Maze()
 	for (int i = 0; i < rows; i++)
 		delete[] M[i];
 	delete[] M;
+}
+
+void Maze::printMaze()
+{
+	cout << "Laberinto Inicial:" << endl;
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j<cols; j++)
+			cout << setw(3) << M[i][j].C;
+		cout << endl;
+	}
+
+}
+
+int Maze::abs(int x)
+{
+	if (x<0)
+		x *= -1;
+	return x;
+}
+
+void Maze::heuristic()
+{
+	//cout<<final.x<<endl<<final.y<<endl;
+	for (int i = 0; i<rows; i++)
+		for (int j = 0; j<cols; j++)
+			M[i][j].H = abs(final.x - i) + abs(final.y - j);
+
 }
 
 void Maze::readInput()
@@ -36,9 +63,14 @@ void Maze::readInput()
 			input >> M[i][j].C;
 
 	setAdjacencies();
+	printMaze();
 
+	cout << "\nAlgoritmo A*:" << endl;
 	while (input >> start.x >> coma >> start.y >> final.x >> coma >> final.y)
 	{
+		cout << "Salida: (" << start.x << ", " << start.y << ")     ";
+		cout << "Meta: (" << final.x << ", " << final.y << ")" << endl;
+		cout << "Recorrdido:" << endl;
 		/* AQUÍ SE MANDA A LLAMAR LA FUNCIÓN */
 		heuristic();
 		astar(start.x, start.y);
@@ -57,102 +89,57 @@ void Maze::setAdjacencies()
 	for (int i = 0; i < rows; i++)
 		for (int j = 0; j < cols; j++)
 		{
-
-		if (i - 1 >= 0)
-		{
-			if (M[i - 1][j].C != -1)
-				M[i][j].adyacent[0] = &M[i - 1][j];
-
-			else
-				M[i][j].adyacent[0] = NULL;
-		}
-		else
-			M[i][j].adyacent[0] = NULL;
-
-		if (j + 1 < cols)
-		{
-			if (M[i][j + 1].C != -1)
-				M[i][j].adyacent[1] = &M[i][j + 1];
-
-			else
-				M[i][j].adyacent[1] = NULL;
-		}
-		else
-			M[i][j].adyacent[1] = NULL;
-
-		if (i + 1 < rows)
-		{
-			if (M[i + 1][j].C != -1)
-				M[i][j].adyacent[2] = &M[i + 1][j];
-
-			else
-				M[i][j].adyacent[2] = NULL;
-		}
-		else
-			M[i][j].adyacent[2] = NULL;
-
-		if (j - 1 >= 0)
-		{
-			if (M[i][j - 1].C != -1)
-				M[i][j].adyacent[3] = &M[i][j - 1];
-
-			else
-				M[i][j].adyacent[3] = NULL;
-		}
-		else
-			M[i][j].adyacent[3] = NULL;
-
-		}
-}
-
-void Maze::printMaze()
-{
-	for (int i = 0; i < rows; i++)
-	{
-		for (int j = 0; j < cols; j++)
-		{
-			cout << "(" << i << ", " << j << ") COSTOS ADY:" << endl;
-			for (int k = 0; k < 4; k++)
+			if (i - 1 >= 0)
 			{
-				if (M[i][j].adyacent[k] != NULL)
-					cout << M[i][j].adyacent[k]->C << " ";
+				if (M[i - 1][j].C != -1)
+					M[i][j].adyacent[0] = &M[i - 1][j];
 
 				else
-					cout << "NULL ";
+					M[i][j].adyacent[0] = NULL;
 			}
-			cout << endl;
-		}
-		cout << endl;
-	}
+			else
+				M[i][j].adyacent[0] = NULL;
 
-	for (int i = 0; i < rows; i++)
-	{
-		for (int j = 0; j<cols; j++)
-			cout << M[i][j].C << " ";
-		cout << endl;
-	}
-		
+			if (j + 1 < cols)
+			{
+				if (M[i][j + 1].C != -1)
+					M[i][j].adyacent[1] = &M[i][j + 1];
+
+				else
+					M[i][j].adyacent[1] = NULL;
+			}
+			else
+				M[i][j].adyacent[1] = NULL;
+
+			if (i + 1 < rows)
+			{
+				if (M[i + 1][j].C != -1)
+					M[i][j].adyacent[2] = &M[i + 1][j];
+
+				else
+					M[i][j].adyacent[2] = NULL;
+			}
+			else
+				M[i][j].adyacent[2] = NULL;
+
+			if (j - 1 >= 0)
+			{
+				if (M[i][j - 1].C != -1)
+					M[i][j].adyacent[3] = &M[i][j - 1];
+
+				else
+					M[i][j].adyacent[3] = NULL;
+			}
+			else
+				M[i][j].adyacent[3] = NULL;
+
+			}
 }
 
-int Maze::abs(int x)
-{
-	if (x<0)
-		x *= -1;
-	return x;
-}
-
-void Maze::heuristic()
-{
-	//cout<<final.x<<endl<<final.y<<endl;
-	for (int i = 0; i<rows; i++)
-		for (int j = 0; j<cols; j++)
-			M[i][j].H = abs(final.x - i) + abs(final.y - j);
-
-}
 
 void Maze::astar(int auxx, int auxy)
 {
-	cout << auxx << ", " << auxy << " Costo Acumulado: " << costo << endl;
+	cout << "("<< auxx << ", " << auxy << ") Costo Acumulado: " << costo << endl;
 	if (auxx == final.x && auxy == final.y) return;
 	Node *aux;
 	aux = NULL;
