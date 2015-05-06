@@ -8,7 +8,7 @@ int main()
 	cout << "\tEXAMEN PARCIAL #2\nALGORITMOS Y ESTRUCTURAS DE DATOS \n  FECHA DE ENTREGA: 07/05/15\n\t  " << endl;
 	cout << "\tA* ALGORITHM" << endl << endl;
 
-	//M.printMaze();
+	M.printMaze();
 
 	cin.get();
 	return 0;
