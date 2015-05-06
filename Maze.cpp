@@ -53,6 +53,7 @@ void Maze::readInput()
 			*/
 
 		astar(start.x, start.y);
+		cout << endl;
 	}
 
 	input.close();
@@ -150,6 +151,7 @@ void Maze::heuristic()
 
 void Maze::astar(int auxx, int auxy)
 {
+	cout << auxx << ", " << auxy << endl;
 	if (auxx == final.x && auxy == final.y) return;
 	Node *aux;
 	aux = NULL;
@@ -170,8 +172,6 @@ void Maze::astar(int auxx, int auxy)
 	}
 
 	costo += aux->C;
-
-	cout << auxx << ", " << auxy << " " << csm << endl;
 
 	if (csm == 0)
 		auxx -= 1;
