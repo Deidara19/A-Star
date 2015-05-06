@@ -128,7 +128,7 @@ void Maze::astar()
 			if (M[auxx][auxy].adyacent[i]->C + M[auxx][auxy].adyacent[i]->H < costo_aux)
 			{
 				aux = M[auxx][auxy].adyacent[i]; 
-				csm++;
+				csm = i;
 				costo_aux = M[auxx][auxy].adyacent[i]->C + M[auxx][auxy].adyacent[i]->H;
 			}
 		}
