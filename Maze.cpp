@@ -53,7 +53,8 @@ void Maze::setAdjacencies()
 	for (int i = 0; i < rows; i++)
 		for (int j = 0; j < cols; j++)
 		{
-		if (i - 1 > 0)
+
+		if (i - 1 >= 0)
 		{
 			if (M[i - 1][j].C != -1)
 				M[i][j].adyacent[0] = &M[i - 1][j];
@@ -86,7 +87,7 @@ void Maze::setAdjacencies()
 		else
 			M[i][j].adyacent[2] = NULL;
 
-		if (j - 1 > 0)
+		if (j - 1 >= 0)
 		{
 			if (M[i][j - 1].C != -1)
 				M[i][j].adyacent[3] = &M[i][j - 1];
@@ -96,6 +97,7 @@ void Maze::setAdjacencies()
 		}
 		else
 			M[i][j].adyacent[3] = NULL;
+
 		}
 }
 
