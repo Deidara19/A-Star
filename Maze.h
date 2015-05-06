@@ -20,6 +20,8 @@ class Maze
 		void readInput();
 		void printMaze();
 		void setAdjacencies();
+		void heuristic();
+		int  abs(int x);
 };
 
 #endif
