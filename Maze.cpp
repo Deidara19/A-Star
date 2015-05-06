@@ -146,4 +146,6 @@ void Maze::astar(int auxx, int auxy)
 		auxx -= 1;
 
 	aux->visited = true;
+
+	astar(auxx, auxy);
 }
