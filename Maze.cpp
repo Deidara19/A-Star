@@ -42,7 +42,17 @@ void Maze::readInput()
 		/* AQUÍ SE MANDA A LLAMAR LA FUNCIÓN */
 		setAdjacencies();
 		heuristic();
-		//astar(start.x, start.y);
+
+		/*
+		for (int i = 0; i < rows; i++)
+		{
+			for (int j = 0; j < cols; j++)
+				cout << M[i][j].H << " ";
+			cout << endl;
+		}
+			*/
+
+		astar(start.x, start.y);
 	}
 
 	input.close();
@@ -161,16 +171,16 @@ void Maze::astar(int auxx, int auxy)
 
 	costo += aux->C;
 
-	cout << auxx << ", " << auxy << endl;
+	cout << auxx << ", " << auxy << " " << csm << endl;
 
 	if (csm == 0)
-		auxy -= 1;
-	else if (csm == 1)
-		auxx += 1;
-	else if (csm == 2)
-		auxy += 1;
-	else if (csm == 3)
 		auxx -= 1;
+	else if (csm == 1)
+		auxy += 1;
+	else if (csm == 2)
+		auxx += 1;
+	else if (csm == 3)
+		auxy -= 1;
 
 	aux->visited = true;
 
