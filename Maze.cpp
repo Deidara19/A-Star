@@ -94,3 +94,19 @@ void Maze::printMaze()
 		cout << endl;
 	}
 }
+
+int Maze::abs(int x)
+{
+    if(x<0)
+        x*=-1;
+    return x;
+}
+
+void Maze::heuristic()
+{
+    //cout<<final.x<<endl<<final.y<<endl;
+    for(int i=0;i<rows;i++)
+        for(int j=0;j<cols;j++)
+             M[i][j].H = abs(final.x - i) + abs(final.y - j);
+
+}
