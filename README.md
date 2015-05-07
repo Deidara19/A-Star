@@ -12,4 +12,4 @@ Desarrollado por:
 
 HEY H. ( ° ͜ʖ͡°)╭∩╮
 HEY TRINI ( ° ͜ʖ͡°)╭∩╮
-HEY LAGAZOS ~~( ° ͜ʖ͡°)╭∩╮
+HEY LAGAZAURUS ~~( ° ͜ʖ͡°)╭∩╮
