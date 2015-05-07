@@ -1,5 +1,4 @@
 #include "Maze.h"
-#include <stdlib.h>
 
 int main()
 {
