@@ -1,5 +1,4 @@
 #include "Maze.h"
-
 Maze::Maze()
 {
 	solution_size = 0;
@@ -60,7 +59,11 @@ void Maze::readInput(char *fileName)
 
 	for (int i = 0; i < rows; i++)
 		for (int j = 0; j < cols; j++)
-			input >> M[i][j].C;
+        {
+            input >> M[i][j].C;
+			M[i][j].i = i;
+			M[i][j].j = j;
+		}
 
 	setAdjacencies();
 	printMaze();
@@ -70,9 +73,16 @@ void Maze::readInput(char *fileName)
 	{
 		cout << "Salida: (" << start.x << ", " << start.y << ")     ";
 		cout << "Meta: (" << final.x << ", " << final.y << ")" << endl;
-		cout << "Recorrdido:" << endl;
+		cout << "Recorrido:" << endl;
+
+        start.x--;
+		start.y--;
+		final.x--;
+		final.y--;
+
 		/* AQUÍ SE MANDA A LLAMAR LA FUNCIÓN */
 		heuristic();
+        S.push(M[start.x][start.y]);
 		astar(start.x, start.y);
 		costo = 0;
 		for (int i = 0; i < rows; i++)
@@ -157,24 +167,44 @@ void Maze::astar(int auxx, int auxy)
 					costo_aux = M[auxx][auxy].adyacent[i]->C + M[auxx][auxy].adyacent[i]->H;
 				}
 	}
-	costo += aux->C;
+
+    if(aux != NULL)
+        costo += aux->C;
+
 
 	if (csm == 0)
-		auxx -= 1;
+	{
+        auxx -= 1;
+        S.push(M[auxx][auxy]);
+        M[auxx][auxy].visited = true;
+	}
+
 	else if (csm == 1)
-		auxy += 1;
+    {
+        auxy += 1;
+        S.push(M[auxx][auxy]);
+        M[auxx][auxy].visited = true;
+    }
+
 	else if (csm == 2)
-		auxx += 1;
+    {
+        auxx += 1;
+        S.push(M[auxx][auxy]);
+        M[auxx][auxy].visited = true;
+    }
 	else if (csm == 3)
-		auxy -= 1;
+    {
+        auxy -= 1;
+        S.push(M[auxx][auxy]);
+        M[auxx][auxy].visited = true;
+    }
 	else
 	{
-		cout << " No existe solución!" << endl;
-		return;
+        S.pop();
+		*aux = S.top();
+		auxx = aux->i;
+		auxy = aux->j;
 	}
-		
-
-	aux->visited = true;
 
 	astar(auxx, auxy);
 }
