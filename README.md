@@ -11,3 +11,4 @@ Desarrollado por:
 - Jasso Avila Juan Guillermo
 
 HEY H. ( ° ͜ʖ͡°)╭∩╮
+HEY TRINI ( ° ͜ʖ͡°)╭∩╮
