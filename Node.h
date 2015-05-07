@@ -15,6 +15,7 @@ class Node
 								  (North, East, South and West) */
 		Node();
 		~Node();
+		int i, j;
 };
 
 #endif

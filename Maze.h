@@ -7,6 +7,8 @@
 #include<iomanip>
 #include<stack>
 
+using namespace std;
+
 class Maze
 {
 public:

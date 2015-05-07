@@ -179,17 +179,19 @@ void Maze::astar(int auxx, int auxy)
 	Node *aux;
 	aux = NULL;
 	int csm = 4;
+	int asd = 0;
 	int costo_aux = 10000000;
 
 	for (int i = 0; i < 4; i++) // es 4 porque horacio se le da la puta gana, hdp, report pls, fucking peruvian
 	{
 		if (M[auxx][auxy].adyacent[i] != NULL)
 			if (M[auxx][auxy].adyacent[i]->visited == false)
-				if ( /*M[auxx][auxy].adyacent[i]->C +*/ M[auxx][auxy].adyacent[i]->H < costo_aux)
+				if (asd + M[auxx][auxy].adyacent[i]->H < costo_aux)
 				{
+					asd += M[auxx][auxy].adyacent[i]->C;
 					aux = M[auxx][auxy].adyacent[i];
 					csm = i;
-					costo_aux = /*M[auxx][auxy].adyacent[i]->C*/ + M[auxx][auxy].adyacent[i]->H;
+					costo_aux = asd + M[auxx][auxy].adyacent[i]->H;
 				}
 	}
 
