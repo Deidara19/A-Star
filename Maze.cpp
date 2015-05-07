@@ -5,6 +5,7 @@ Maze::Maze()
 	rows = 0;
 	cols = 0;
 	costo = 0;
+	asd = 0;
 	//auxx = start.x;
 	//auxy = start.y;
 }
@@ -88,33 +89,36 @@ void Maze::readInput(char *fileName)
 		final.x--;
 		final.y--;
 
-		/* AQUÍ SE MANDA A LLAMAR LA FUNCIÓN */
-		heuristic();
-
-		cout << "Heuristic:" << endl;
+		heuristic();   // Heurísticas
+		/*
 		for (int i = 0; i < rows; i++)
 		{
 			for (int j = 0; j<cols; j++)
 				cout << setw(3) << M[i][j].H;
 			cout << endl;
 		}
+		*/
 
 		cout << "Recorrido:" << endl;
 		S.push(M[start.x][start.y]);
+		/* AQUÍ SE MANDA A LLAMAR LA FUNCIÓN */
 		astar(start.x, start.y);
 		costo = 0;
+		asd = 0;
 		for (int i = 0; i < rows; i++)
 			for (int j = 0; j < cols; j++)
 				M[i][j].visited = false;
 
 		while (!S.empty())
 		{
-			cout << "(" << S.top().i+1 << ", " << S.top().j+1 << ") -> ";
+			cout << "(" << S.top().i + 1 << ", " << S.top().j + 1 << ") -> ";
 			costo += S.top().C;
+			if (S.top().i == start.x && S.top().j == start.y)
+				costo -= S.top().C;
 			S.pop();
 		}
 
-		cout << "Costo Final: " << costo << endl;
+		cout << "Costo Final: " << costo << endl << endl;
 	}
 
 	input.close();
@@ -179,7 +183,6 @@ void Maze::astar(int auxx, int auxy)
 	Node *aux;
 	aux = NULL;
 	int csm = 4;
-	int asd = 0;
 	int costo_aux = 10000000;
 
 	for (int i = 0; i < 4; i++) // es 4 porque horacio se le da la puta gana, hdp, report pls, fucking peruvian
@@ -188,12 +191,14 @@ void Maze::astar(int auxx, int auxy)
 			if (M[auxx][auxy].adyacent[i]->visited == false)
 				if (asd + M[auxx][auxy].adyacent[i]->H < costo_aux)
 				{
-					asd += M[auxx][auxy].adyacent[i]->C;
 					aux = M[auxx][auxy].adyacent[i];
 					csm = i;
 					costo_aux = asd + M[auxx][auxy].adyacent[i]->H;
 				}
 	}
+
+	if (csm != 4)
+		asd += M[auxx][auxy].adyacent[csm]->C;
 
 	if (csm == 0)
 	{
