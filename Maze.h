@@ -5,6 +5,7 @@
 #include "Point2D.h"
 #include<fstream>
 #include<iomanip>
+#include<stack>
 
 class Maze
 {
@@ -15,6 +16,7 @@ public:
 	Node **M;                             // Store the maze.
 	int rows, cols;                       // Height of the maze (Rows and Columns)
 	int costo;
+	stack<Node> S;
 	//int auxx, auxy;
 
 	Maze();
@@ -27,5 +29,6 @@ public:
 	int  abs(int x);
 	void astar(int auxx, int auxy);
 };
+
 
 #endif
