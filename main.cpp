@@ -9,6 +9,7 @@ int main()
 	cout << "\t  A* ALGORITHM" << endl << endl;
 
 	M.readInput("Examen2-1.txt");
+	cout << "Algoritmo Realizado con Exito!";
 
 	cin.get();
 	return 0;
