@@ -17,7 +17,7 @@ public:
 	Point2D start, final;
 	Node **M;                             // Store the maze.
 	int rows, cols;                       // Height of the maze (Rows and Columns)
-	int costo;
+	int costo, asd;
 	stack<Node> S;
 	//int auxx, auxy;
 
@@ -31,6 +31,5 @@ public:
 	int  abs(int x);
 	void astar(int auxx, int auxy);
 };
-
 
 #endif
