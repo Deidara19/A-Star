@@ -189,7 +189,7 @@ void Maze::astar(int auxx, int auxy)
 	{
 		if (M[auxx][auxy].adyacent[i] != NULL)
 			if (M[auxx][auxy].adyacent[i]->visited == false)
-				if (asd + M[auxx][auxy].adyacent[i]->H < costo_aux)
+				if (asd + M[auxx][auxy].adyacent[i]->C + M[auxx][auxy].adyacent[i]->H < costo_aux)
 				{
 					aux = M[auxx][auxy].adyacent[i];
 					csm = i;
