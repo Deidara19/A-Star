@@ -10,5 +10,7 @@ Node::Node()
 
 Node::~Node()
 {
-	delete[] adyacent;
+	//for (int i = 0; i < 4; i++)
+	//	adyacent[i] = NULL;
+	//delete[] adyacent;
 }
