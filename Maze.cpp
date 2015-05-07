@@ -193,7 +193,7 @@ void Maze::astar(int auxx, int auxy)
 				{
 					aux = M[auxx][auxy].adyacent[i];
 					csm = i;
-					costo_aux = asd + M[auxx][auxy].adyacent[i]->H;
+					costo_aux = asd + M[auxx][auxy].adyacent[i]->C + M[auxx][auxy].adyacent[i]->H;
 				}
 	}
 
